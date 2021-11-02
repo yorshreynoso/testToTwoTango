@@ -2,6 +2,7 @@ const express   = require('express');
 const router    = express.Router();
 const jwt       = require('jsonwebtoken');
 const User      = require('../models/User');
+const verifyToken = require('../controller/verifyToken');
 
 //process password
 require('dotenv').config();
@@ -67,33 +68,15 @@ router.post('/signin', async(req,res) => {
 });
 
 //only logged users can entry into this route, only logged correctly
-router.post('/protected', (req, res) => {
-    const bearerHeader = req.headers['authorization'];
-    
-    if(bearerHeader) {
-        const token   = bearerHeader.split(" ")[1];
-        
-        jwt.verify(token, PASSWORD_JWT, async(error, authData) => { // validate token
-            if(error) {
-                res.status(401).json({
-                    auth    : false,
-                    message : "Validation token error"
-                });
-            } else {
-                const user = await User.findById(authData.id, { password: 0 }); // get by id and dont get password
-                if(!user) {
-                    return res.status(404).send({ message:"user doesn't found"});
-                }
-                return res.json(user);
-            }
-        });
-
-    } else {
-        res.status(403).json({
-            auth    : false,
-            message : "No token provided"
-        });
+router.post('/protected', verifyToken, async (req, res) => {
+    const authDataId = req.userId;
+   
+    const user = await User.findById(authDataId, { password: 0 }); // get by id and dont get password
+    if(!user) {
+        return res.status(404).send({ message:"user doesn't found"});
     }
+    return res.json(user);
+
 
 });
 

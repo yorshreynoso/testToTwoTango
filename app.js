@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: false})); // user to server
 // parse application/json
 app.use(express.json()); //server to user
 
-//process password
+//process password(process.env)
 require('dotenv').config();
 
 
