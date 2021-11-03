@@ -37,14 +37,15 @@ mongod
 - [node.js] - evented I/O for backend.
 - [Express] - fast node.js network app framework.
 - [Cors] - provide a Connect/Express middleware that can be used to enable CORS with various options.
--[jwt] - JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON.
--[dotenv] - Create a .env file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE.
+- [jwt] - JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON.
+- [dotenv] - Create a .env file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE.
 - [bcrypt] - bcrypt is a password-hashing function designed by Niels Provos and David Mazières, based on the Blowfish cipher and presented at USENIX in 1999.
 - [mongoose] - Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box.
+- [nodemon] - nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
 
 
 
-# frontEnd
+# FrontEnd
 // TODO
 the Frontend part is for testing purpose, is still on developer, there is only a view of loggin to take the info and send it to backend and receiving a bearer to login.
 But is still on developer the left data.
@@ -56,7 +57,7 @@ So the way to make test by far is using an aplication to make request petitions 
 All the endpoints should start /api + /endpoint
 example: localhost:3000/api/createUser
 
-## /createUser POST
+## /createUser - POST
 used to create a new user on database, it require 2 parameters
 ```sh
 {
@@ -80,6 +81,7 @@ The endpoint login need on the header a bearer token, we need to add our email a
 header:
 ```sh
 autorization : bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODJlMjdiMzBkMmY1MTI2NTBjOThhZCIsImlhdCI6MTYzNTk2Nzg4MCwiZXhwIjoxNjM2MDUwNjgwfQ.manL2dBgrbgCoqsM3ZQ885zDOgmuW940gulSvMSIjh0
+```
 
 ```sh
 {
