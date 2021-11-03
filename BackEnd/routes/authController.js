@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     res.end();
 });
 
-router.post('/signup', async(req, res) => { //login, new users
+router.post('/createUser', async(req, res) => { //login, new users
     const { email, password } = req.body;
     
     const user = new User({email, password});
@@ -26,9 +26,9 @@ router.post('/signup', async(req, res) => { //login, new users
     
     //create token on jwt
     jwt.sign({id: user._id}, PASSWORD_JWT, {expiresIn : '1h' }, (err, token) => {
-        
         if(!err && token) {
-            res.json({
+            console.log('created correctly');
+            return res.json({
                 auth: true,
                 token
             });
@@ -36,9 +36,10 @@ router.post('/signup', async(req, res) => { //login, new users
             res.err({ message:"Error to get token" });
         }
     });
+    return res;
 });
 
-router.post('/signin', async(req,res) => {
+router.post('/loginUser', async(req,res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email});
 
@@ -68,6 +69,7 @@ router.post('/signin', async(req,res) => {
 });
 
 //only logged users can entry into this route, only logged correctly
+//just for testing purposse, to validate if we have loggued correctly.
 router.post('/protected', verifyToken, async (req, res) => {
     const authDataId = req.userId;
    
@@ -79,6 +81,19 @@ router.post('/protected', verifyToken, async (req, res) => {
 
 
 });
+
+router.get('/users', verifyToken, async(req, res) => {
+    let newUsers = [];
+    //const authDataId = req.userId;
+    const users = await User.find();
+    if(users) {
+        for(user of users) {
+            newUsers.push({id:user._id,  email: user.email});
+        }
+        return res.json(newUsers);
+    }
+    return res.status(404).send('There is no users on database');
+})
 
 
 

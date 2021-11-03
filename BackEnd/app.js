@@ -1,10 +1,11 @@
 const express   = require('express');
 const app       = express();
 const routes    = require('./routes/authController.js');
+const cors      = require("cors");
 require('./database');
 
 const port = process.env.PORT || 3000;
-
+app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: false})); // user to server
 // parse application/json

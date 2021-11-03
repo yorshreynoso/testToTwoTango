@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "93d2fed1-6554-48ce-b402-85a2bc77a709",
+		"name": "TwoToTango",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "request page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "posts user logued",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxN2Y0NmNiNGZlMjZmYjgxZTM2ZWZiOSIsImlhdCI6MTYzNTkxNTk3MCwiZXhwIjoxNjM1OTk4NzcwfQ.ckj9D8IYnl0TPS29Q2lTpI17dzsH_pdEXxFOqzLeOm8\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:3000/api/protected",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"protected"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create token (login)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"example@email.com\",\n    \"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/createUser",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"createUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create token loguearse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"yorsh@email.com\",\n    \"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/loginUser",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"loginUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODIyNzViNmYwNzFiMTIwYWQwYTI1NSIsImlhdCI6MTYzNTkxOTcwNywiZXhwIjoxNjM1OTIzMzA3fQ.moG--n1HpmsNmLWzpZG29I8u9dUcGb5AX8YVgXid4hw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
